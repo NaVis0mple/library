@@ -1,21 +1,36 @@
-// loop to  create card
 const myLibrary = []
-function Book (name, arthur, readTime, finished) {
-  this.name = name
+
+function Book (bookName, arthur, readtime, finished) {
+  this.bookName = bookName
   this.arthur = arthur
-  this.readTime = readTime
+  this.readtime = readtime
   this.finished = finished
   this.try = function () {
-    console.log(name)
+    console.log(bookName)
   }
 }
-// test manually
-const bookA = new Book('bookOfShadow', 'Peter', '2012', 'y')
-bookA.try()
-// add book by user input to library as an object 
+// add book by user input to library as an object
+function addBookToLibrary () {
+  const bookName = document.getElementById('bookName').value
+  const arthur = document.getElementById('arthur').value
+  const readtime = document.getElementById('readtime').value
+  const finished = document.getElementById('finished').checked
+  const newBook = new Book(bookName, arthur, readtime, finished)
+  myLibrary.push(newBook)
+}
 
+const buttonOK = document.getElementById('ok')
+const buttonSummit = buttonOK.addEventListener('click', () => {
+  const bookName = document.getElementById('bookName').value
+  const arthur = document.getElementById('arthur').value
+  const readtime = document.getElementById('readtime').value
+  if (bookName && arthur && readtime) {
+    addBookToLibrary()
+    newdiv()
+  }
+})
 
-// button to add book toggle
+// toggle button to add book
 const button = document.getElementById('add')
 const toggle = button.addEventListener('click', (e) => {
   const form = document.getElementById('form')
@@ -25,3 +40,13 @@ const toggle = button.addEventListener('click', (e) => {
     form.className = 'hidden'
   }
 })
+// print object  printarea->div->4div
+function newdiv () {
+  const printarea = document.getElementById('printarea')
+  const newcard = document.createElement('div')
+  printarea.appendChild(newcard)
+  for (let i = 0; i < 4; i++) {
+    const titleInCard = document.createElement('div')
+    newcard.appendChild(titleInCard)
+  }
+}
