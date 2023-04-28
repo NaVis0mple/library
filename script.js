@@ -12,7 +12,8 @@ function Book (name, arthur, readTime, finished) {
 // test manually
 const bookA = new Book('bookOfShadow', 'Peter', '2012', 'y')
 bookA.try()
-// add book by user input to library
+// add book by user input to library as an object 
+
 
 // button to add book toggle
 const button = document.getElementById('add')
