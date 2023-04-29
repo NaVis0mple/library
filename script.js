@@ -5,16 +5,13 @@ function Book (bookName, arthur, readtime, finished) {
   this.arthur = arthur
   this.readtime = readtime
   this.finished = finished
-  this.try = function () {
-    console.log(bookName)
-  }
 }
 // add book by user input to library as an object
-function addBookToLibrary () {
-  const bookName = document.getElementById('bookName').value
-  const arthur = document.getElementById('arthur').value
-  const readtime = document.getElementById('readtime').value
-  const finished = document.getElementById('finished').checked
+function addBookToLibrary (bookName,arthur,readtime,finished) {
+  // const bookName = document.getElementById('bookName').value
+  // const arthur = document.getElementById('arthur').value
+  // const readtime = document.getElementById('readtime').value
+  // const finished = document.getElementById('finished').checked
   const newBook = new Book(bookName, arthur, readtime, finished)
   myLibrary.push(newBook)
 }
@@ -24,10 +21,17 @@ const buttonSummit = buttonOK.addEventListener('click', () => {
   const bookName = document.getElementById('bookName').value
   const arthur = document.getElementById('arthur').value
   const readtime = document.getElementById('readtime').value
+  const finished = document.getElementById('finished').checked
   if (bookName && arthur && readtime) {
-    addBookToLibrary()
-    newdiv()
+    addBookToLibrary(bookName,arthur,readtime,finished)
+    newdiv (bookName,arthur,readtime,finished)
+    
+    document.getElementById('bookName').value = ''
+    document.getElementById('arthur').value = ''
+    document.getElementById('readtime').value = ''
+    document.getElementById('finished').checked = false
   }
+  
 })
 
 // toggle button to add book
@@ -41,12 +45,36 @@ const toggle = button.addEventListener('click', (e) => {
   }
 })
 // print object  printarea->div->4div
-function newdiv () {
+function newdiv (bookName,arthur,readtime,finished) {
   const printarea = document.getElementById('printarea')
-  const newcard = document.createElement('div')
-  printarea.appendChild(newcard)
-  for (let i = 0; i < 4; i++) {
-    const titleInCard = document.createElement('div')
-    newcard.appendChild(titleInCard)
-  }
+  // div container
+  const container = document.createElement('div')
+  printarea.appendChild(container)
+  // // 4div nameCard arthurCard readtimeCard finishedCard
+  // const nameCard = document.createElement('div')  
+  // container.appendChild(nameCard)
+  // const content1 = document.createTextNode(bookName)  
+  // nameCard.appendChild(content1)
+  
+  // const arthurCard = document.createElement('div')  
+  // container.appendChild(arthurCard)
+  // const content2 = document.createTextNode(arthur)  
+  // arthurCard.appendChild(content2)
+  
+  // const readtimeCard = document.createElement('div')  
+  // container.appendChild(readtimeCard)
+  // const content3 = document.createTextNode(readtime)  
+  // readtimeCard.appendChild(content3)
+
+  // const finishedCard = document.createElement('div')  
+  // container.appendChild(finishedCard)
+  // const content4 = document.createTextNode(finished)  
+  // finishedCard.appendChild(content4)
+  const keys = [bookName, arthur, readtime, finished]
+  keys.forEach(key=>{
+    const element = document.createElement('div')
+    const content = document.createTextNode(key)
+    element.appendChild(content)
+    container.appendChild(element)
+  })
 }
