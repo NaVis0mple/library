@@ -64,9 +64,15 @@ function finishedtoggle () {
     element.addEventListener('click', (e) => {
       if (element.innerHTML === 'true') {
         element.innerHTML = 'false'
+        element.classList.add('red')
+        element.classList.remove('green')
+
         backFinishedValue()
       } else if (element.innerHTML === 'false') {
-        element.innerHTML = 'true'  
+        element.innerHTML = 'true' 
+        element.classList.add('green')
+        element.classList.remove('red')
+
         backFinishedValue()
       }
       

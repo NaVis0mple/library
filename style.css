@@ -31,3 +31,11 @@ button#add {
     display: grid;
     justify-items: start;
 }
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: greenyellow;
+}
