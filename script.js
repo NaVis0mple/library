@@ -37,6 +37,7 @@ const buttonSummit = buttonOK.addEventListener('click', () => {
 const button = document.getElementById('add')
 const toggle = button.addEventListener('click', (e) => {
   const form = document.getElementById('form')
+  
   if (form.className === 'hidden') {
     form.className = ''
   } else if (form.className === '') {

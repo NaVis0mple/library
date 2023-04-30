@@ -4,8 +4,8 @@ body {
     margin: auto;
 }
 
-.hidden {
-    display: none;
+#form.hidden {
+    display: none
 }
 
 #printarea {
@@ -14,16 +14,19 @@ body {
     gap: 15px;
     border: solid gray 5px;
     min-height: 95vh;
+    position: relative;
 }
 
 /* fix this */
-/* button {
+button#add {
     position: absolute;
-    left: 250px;
+    left: 150px;
 }
 
 #form {
     position: absolute;
-    top: 50px;
-    left: 250px;
-} */
+    top: 45px;
+    left: 150px;
+    z-index: 1;
+    display: grid;
+}
