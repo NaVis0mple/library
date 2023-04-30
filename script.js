@@ -8,10 +8,6 @@ function Book (bookName, arthur, readtime, finished) {
 }
 // add book by user input to library as an object
 function addBookToLibrary (bookName, arthur, readtime, finished) {
-  // const bookName = document.getElementById('bookName').value
-  // const arthur = document.getElementById('arthur').value
-  // const readtime = document.getElementById('readtime').value
-  // const finished = document.getElementById('finished').checked
   const newBook = new Book(bookName, arthur, readtime, finished)
   myLibrary.push(newBook)
 }
@@ -21,7 +17,7 @@ const buttonSummit = buttonOK.addEventListener('click', () => {
   const bookName = document.getElementById('bookName').value
   const arthur = document.getElementById('arthur').value
   const readtime = document.getElementById('readtime').value
-  const finished = document.getElementById('finished').checked
+  const finished = document.getElementById('finished').checked.toString()
   if (bookName && arthur && readtime) {
     addBookToLibrary(bookName, arthur, readtime, finished)
     newdiv(bookName, arthur, readtime, finished)
@@ -32,12 +28,11 @@ const buttonSummit = buttonOK.addEventListener('click', () => {
     document.getElementById('finished').checked = false
   }
 })
-
 // toggle button to add book
 const button = document.getElementById('add')
 const toggle = button.addEventListener('click', (e) => {
   const form = document.getElementById('form')
-  
+
   if (form.className === 'hidden') {
     form.className = ''
   } else if (form.className === '') {
@@ -51,30 +46,38 @@ function newdiv (bookName, arthur, readtime, finished) {
   const container = document.createElement('div')
   printarea.appendChild(container)
   // // 4div nameCard arthurCard readtimeCard finishedCard
-  // const nameCard = document.createElement('div')
-  // container.appendChild(nameCard)
-  // const content1 = document.createTextNode(bookName)
-  // nameCard.appendChild(content1)
-
-  // const arthurCard = document.createElement('div')
-  // container.appendChild(arthurCard)
-  // const content2 = document.createTextNode(arthur)
-  // arthurCard.appendChild(content2)
-
-  // const readtimeCard = document.createElement('div')
-  // container.appendChild(readtimeCard)
-  // const content3 = document.createTextNode(readtime)
-  // readtimeCard.appendChild(content3)
-
-  // const finishedCard = document.createElement('div')
-  // container.appendChild(finishedCard)
-  // const content4 = document.createTextNode(finished)
-  // finishedCard.appendChild(content4)
-  const keys = [bookName, arthur, readtime, finished]
-  keys.forEach(key => {
+  const title = [bookName, arthur, readtime, finished]
+  const keys = ['bookName', 'arthur', 'readtime', 'finished']
+  keys.forEach((key, index) => {
     const element = document.createElement('div')
-    const content = document.createTextNode(key)
+    const content = document.createTextNode(title[index])
+    element.classList.add(key)
     element.appendChild(content)
     container.appendChild(element)
+    finishedtoggle()
+  })
+}
+// add true false eventlistener toggle to about finished
+function finishedtoggle () {
+  const finishedevent = document.querySelectorAll('.finished')
+  finishedevent.forEach((element) => {
+    element.addEventListener('click', (e) => {
+      if (element.innerHTML === 'true') {
+        element.innerHTML = 'false'
+        backFinishedValue()
+      } else if (element.innerHTML === 'false') {
+        element.innerHTML = 'true'  
+        backFinishedValue()
+      }
+      
+    })
+  })
+}
+
+// to set the value back to mylibrary object
+function backFinishedValue() {
+  const finishedDivs = document.querySelectorAll('.finished')
+  myLibrary.forEach((book, index) => {
+    book.finished = finishedDivs[index].innerHTML
   })
 }

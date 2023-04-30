@@ -29,4 +29,5 @@ button#add {
     left: 150px;
     z-index: 1;
     display: grid;
+    justify-items: start;
 }
