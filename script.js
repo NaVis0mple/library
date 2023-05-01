@@ -6,10 +6,11 @@ function Book (bookName, arthur, readtime, finished) {
   this.readtime = readtime
   this.finished = finished
 }
-// add book by user input to library as an object
+// add book by input to library as an object
 function addBookToLibrary (bookName, arthur, readtime, finished) {
   const newBook = new Book(bookName, arthur, readtime, finished)
   myLibrary.push(newBook)
+  newdiv()
 }
 
 const buttonOK = document.getElementById('ok')
@@ -20,8 +21,6 @@ const buttonSummit = buttonOK.addEventListener('click', () => {
   const finished = document.getElementById('finished').checked.toString()
   if (bookName && arthur && readtime) {
     addBookToLibrary(bookName, arthur, readtime, finished)
-    newdiv(bookName, arthur, readtime, finished)
-
     document.getElementById('bookName').value = ''
     document.getElementById('arthur').value = ''
     document.getElementById('readtime').value = ''
@@ -40,20 +39,23 @@ const toggle = button.addEventListener('click', (e) => {
   }
 })
 // print object  printarea->div->4div
-function newdiv (bookName, arthur, readtime, finished) {
+function newdiv () {
   const printarea = document.getElementById('printarea')
-  // div container
-  const container = document.createElement('div')
-  printarea.appendChild(container)
+  printarea.innerHTML = ''
   // // 4div nameCard arthurCard readtimeCard finishedCard
-  const title = [bookName, arthur, readtime, finished]
-  const keys = ['bookName', 'arthur', 'readtime', 'finished']
-  keys.forEach((key, index) => {
-    const element = document.createElement('div')
-    const content = document.createTextNode(title[index])
-    element.classList.add(key)
-    element.appendChild(content)
-    container.appendChild(element)
+  myLibrary.forEach((book) => {
+    const container = document.createElement('div')
+    printarea.appendChild(container)
+
+    const keys = ['bookName', 'arthur', 'readtime', 'finished']
+    keys.forEach((key) => {
+      const element = document.createElement('div')
+      const content = document.createTextNode(book[key])
+      element.classList.add(key)
+      element.appendChild(content)
+      container.appendChild(element)
+      
+    })
     finishedtoggle()
   })
 }
@@ -61,27 +63,28 @@ function newdiv (bookName, arthur, readtime, finished) {
 function finishedtoggle () {
   const finishedevent = document.querySelectorAll('.finished')
   finishedevent.forEach((element) => {
+    if(element.innerHTML === 'true'){
+      element.classList.add('green')
+    }else if (element.innerHTML === 'false') {
+      element.classList.add('red')
+    }
     element.addEventListener('click', (e) => {
       if (element.innerHTML === 'true') {
         element.innerHTML = 'false'
         element.classList.add('red')
         element.classList.remove('green')
-
         backFinishedValue()
       } else if (element.innerHTML === 'false') {
-        element.innerHTML = 'true' 
+        element.innerHTML = 'true'
         element.classList.add('green')
         element.classList.remove('red')
-
         backFinishedValue()
       }
-      
     })
   })
 }
-
 // to set the value back to mylibrary object
-function backFinishedValue() {
+function backFinishedValue () {
   const finishedDivs = document.querySelectorAll('.finished')
   myLibrary.forEach((book, index) => {
     book.finished = finishedDivs[index].innerHTML

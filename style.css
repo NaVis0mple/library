@@ -15,6 +15,7 @@ body {
     border: solid gray 5px;
     min-height: 95vh;
     position: relative;
+    justify-items: center;
 }
 
 /* fix this */
