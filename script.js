@@ -53,22 +53,22 @@ function newdiv () {
       const content = document.createTextNode(book[key])
       element.classList.add(key)
       element.appendChild(content)
-      container.appendChild(element)   
-    })   
+      container.appendChild(element)
+    })
   })
   finishedtoggle()
+  booklist()
 }
 // add true false eventlistener toggle to about finished
 function finishedtoggle () {
   const finishedevent = document.querySelectorAll('.finished')
   finishedevent.forEach((element) => {
-    if(element.innerHTML === 'true'){
+    if (element.innerHTML === 'true') {
       element.classList.add('green')
-    }else if (element.innerHTML === 'false') {
+    } else if (element.innerHTML === 'false') {
       element.classList.add('red')
     }
     element.addEventListener('click', () => {
-
       if (element.innerHTML === 'true') {
         element.innerHTML = 'false'
         element.classList.add('red')
@@ -89,4 +89,23 @@ function backFinishedValue () {
   myLibrary.forEach((book, index) => {
     book.finished = finishedDivs[index].innerHTML
   })
+}
+
+// list of bookname
+function booklist () {
+  const list = document.getElementById('list')
+  list.innerHTML = ''
+  const nametitle = myLibrary.map((item) => {
+    return item.bookName
+  })
+  nametitle.forEach((name,index) => {
+    const li = document.createElement('li')
+    const liname = document.createTextNode(`${index+1} ${name}`)
+    list.appendChild(li)
+    li.appendChild(liname)
+  })
+}
+// add delete button
+function deleteBook () {
+
 }

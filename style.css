@@ -18,7 +18,20 @@ body {
     justify-items: center;
 }
 
-/* fix this */
+button#delete {
+    position: absolute;
+    right: 150px;
+}
+
+#list {
+    position: absolute;
+    top: 45px;
+    right: 150px;
+    z-index: 1;
+    display: grid;
+    justify-items: start;
+}
+
 button#add {
     position: absolute;
     left: 150px;
@@ -63,4 +76,8 @@ button#add {
 
 .arthur::before {
     content: 'by ';
+}
+
+.finished::before {
+    content: 'done:';
 }
