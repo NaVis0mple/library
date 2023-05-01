@@ -53,10 +53,8 @@ function newdiv () {
       const content = document.createTextNode(book[key])
       element.classList.add(key)
       element.appendChild(content)
-      container.appendChild(element)
-      
-    })
-    
+      container.appendChild(element)   
+    })   
   })
   finishedtoggle()
 }
