@@ -56,8 +56,9 @@ function newdiv () {
       container.appendChild(element)
       
     })
-    finishedtoggle()
+    
   })
+  finishedtoggle()
 }
 // add true false eventlistener toggle to about finished
 function finishedtoggle () {
@@ -68,7 +69,8 @@ function finishedtoggle () {
     }else if (element.innerHTML === 'false') {
       element.classList.add('red')
     }
-    element.addEventListener('click', (e) => {
+    element.addEventListener('click', () => {
+
       if (element.innerHTML === 'true') {
         element.innerHTML = 'false'
         element.classList.add('red')
