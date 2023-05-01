@@ -44,3 +44,23 @@ button#add {
     text-align: center;
     user-select: none;
 }
+
+.bookName {
+    text-align: center;
+}
+
+.bookName::before {
+    content: "《";
+}
+
+.bookName::after {
+    content: "》";
+}
+
+.arthur {
+    text-align: center;
+}
+
+.arthur::before {
+    content: 'by ';
+}
