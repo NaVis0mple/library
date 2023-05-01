@@ -35,8 +35,12 @@ button#add {
 
 .red {
     background-color: red;
+    text-align: center;
+    user-select: none;
 }
 
 .green {
     background-color: greenyellow;
+    text-align: center;
+    user-select: none;
 }
