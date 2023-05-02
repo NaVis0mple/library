@@ -14,7 +14,7 @@ function addBookToLibrary (bookName, arthur, readtime, finished) {
 }
 
 const buttonOK = document.getElementById('ok')
-const buttonSummit = buttonOK.addEventListener('click', () => {
+buttonOK.addEventListener('click', () => {
   const bookName = document.getElementById('bookName').value
   const arthur = document.getElementById('arthur').value
   const readtime = document.getElementById('readtime').value
@@ -29,7 +29,7 @@ const buttonSummit = buttonOK.addEventListener('click', () => {
 })
 // toggle button to add book
 const button = document.getElementById('add')
-const toggle = button.addEventListener('click', (e) => {
+button.addEventListener('click', (e) => {
   const form = document.getElementById('form')
 
   if (form.className === 'hidden') {
@@ -98,14 +98,37 @@ function booklist () {
   const nametitle = myLibrary.map((item) => {
     return item.bookName
   })
-  nametitle.forEach((name,index) => {
+  nametitle.forEach((name, index) => {
     const li = document.createElement('li')
-    const liname = document.createTextNode(`${index+1} ${name}`)
+    const liname = document.createTextNode(`${index + 1}. ${name}`)
+    li.classList.add(index)
     list.appendChild(li)
     li.appendChild(liname)
   })
+  deletefunction()
 }
-// add delete button
-function deleteBook () {
+// delete function toggle
+const buttonDelete = document.getElementById('delete')
+buttonDelete.addEventListener('click', () => {
+  buttonDelete.classList.toggle('deleteon')
+  if (buttonDelete.innerHTML === 'DeleteOff') {
+    buttonDelete.innerHTML = 'DeleteOn'
+  } else {
+    buttonDelete.innerHTML = 'DeleteOff'
+  }
+})
 
+// delete function
+function deletefunction () {
+  const allli = document.querySelectorAll('li')
+  allli.forEach((li, index) => {
+    li.addEventListener('click', () => {
+      if (buttonDelete.className === 'deleteon') {
+        console.log(index)
+        myLibrary.splice(index, 1)
+        booklist()
+        newdiv()
+      }
+    })
+  })
 }

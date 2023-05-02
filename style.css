@@ -30,6 +30,7 @@ button#delete {
     z-index: 1;
     display: grid;
     justify-items: start;
+    list-style: none;
 }
 
 button#add {
@@ -80,4 +81,8 @@ button#add {
 
 .finished::before {
     content: 'done:';
+}
+
+.deleteon {
+    background-color: red;
 }
